@@ -8,6 +8,7 @@
 import os
 import socket
 import subprocess
+import re
 
 #Events are written to the log file /var/log/kasper.log. When the log size reaches 1 GB, it is deleted and recreated.
 if not os.path.exists('/var/log/kasper.log'): open("/var/log/kasper.log", "w+")
@@ -34,8 +35,8 @@ def massive(IP=[]):
                         IP.append(i)
 	return IP
 def networkavailable(var, g):
-        mount = subprocess.Popen(("ping", "-c4", g), stdout=subprocess.PIPE); exit_code = subprocess.check_output(("sed", "-n", '1,/^---/d;s/%.*//;s/.*, //g;p;q'), stdin=mount.stdout); mount.wait();
-        if exit_code==1:
+        mount = subprocess.Popen(("ping", "-c4", g), stdout=subprocess.PIPE); exit_code = subprocess.check_output(("sed", "-n", '1,/^---/d;s/%.*//;s/.*, //g;p;q'), stdin=mount.stdout); mount.wait()
+        if int(exit_code.replace("\n","")) == 100:
                 if var==1:
                         os.system('echo $(date +"%Y%m%d-%H%M%S")     Server KSC is not available       >> /var/log/backupdb.log')
                         return 1

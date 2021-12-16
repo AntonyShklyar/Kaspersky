@@ -8,7 +8,7 @@
 import os
 import socket
 import subprocess
-import sys
+
 #Events are written to the log file /var/log/kasper.log. When the log size reaches 1 GB, it is deleted and recreated.
 if not os.path.exists('/var/log/kasper.log'): open("/var/log/kasper.log", "w+")
 #If the size of 1 GB is exceeded, the debug.log is deleted and recreated

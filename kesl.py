@@ -2,7 +2,6 @@
 
 # The script reconnects the KSC agent to the backup KSC if the main one is unavailable. If the primary KSC is available and the agent is connected to the backup, then it reconnects to the primary.
 # Also, the script monitors the availability of the KSC via ICMP and checks if the reconnect command was successful.
-
 #massive - select an array of KSC IP addresses depending on the contour
 
 import os

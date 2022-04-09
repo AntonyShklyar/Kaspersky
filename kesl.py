@@ -35,16 +35,25 @@ def networkavailable(var, g):
 	'''
 '''
 Editable parameters:
---domain
+--segment
 The data type is a dictionary.
-Data - domain: list of IP addresses of domain stores
+Data - domain: list of IP addresses KSC server and segments
+--codid
+The data type is a dictionary.
+Data - Data Center ID: IP KSC server
 ''''
-domain={'ac.com':['10.111.15.55', '10.111.15.64', '10.111.15.76'],'vp.com':['10.111.16.55', '10.111.16.64', '10.111.16.76'],'in.com':['10.111.17.55', '10.111.17.64', '10.111.17.76']}
-IP=[]
+segment={'ac.com':['10.111.15.55', '10.111.15.64', '10.111.15.76'],'vp.com':['10.111.16.55', '10.111.16.64', '10.111.16.76'],'in.com':['10.111.17.55', '10.111.17.64', '10.111.17.76']}
+codid={'01':['10.111.15.55', '10.111.16.55', '10.111.17.55'],'02':['10.111.15.64', '10.111.16.64', '10.111.17.64'],'03':['10.111.15.77', '10.111.16.76', '10.111.17.76']}
+KSC=[]
 logs()
-for x, y in domain.items():
+for x, y in segment.items():
 	if x in a:
-		IP.append(y)
+		KSC.append(y)
+for x, y in codid.items():
+	for z in y:
+		if z in KSC:
+			KSC.remove(z)
+			KSC.insert(0, z)
 for var, g in enumerate(IP, 1):
         b=networkavailable(var, g)
         if b==0:
@@ -59,7 +68,7 @@ for var, g in enumerate(IP, 1):
 			if subprocess.call(["/opt/kaspersky/klnagent64/bin/klmover", "-address", g]) == 0: os.system('echo $(date +"%Y%m%d-%H%M%S") KSC Server change operation on'+g+' Successful >> /var/log/kasper.log'); exit()
 			else:
 				os.system('echo $(date +"%Y%m%d-%H%M%S") KSC Server change operation on'+g+' Unsuccessful >> /var/log/kasper.log'); exit()
-	elif var != len(IP):
+	elif var != len(KSC):
                 continue
         else:
                 exit()

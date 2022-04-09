@@ -39,7 +39,7 @@ Editable parameters:
 The data type is a dictionary.
 Data - domain: list of IP addresses of domain stores
 ''''
-domain={'ac.com':['10.111.15.55', '10.111.15.64', '10.111.15.76'],'vp.com':['10.111.16.55', '10.111.16.64', '10.111.16.76'],'in.com':['10.111.17.54', '10.111.17.64', '10.111.17.76']}
+domain={'ac.com':['10.111.15.55', '10.111.15.64', '10.111.15.76'],'vp.com':['10.111.16.55', '10.111.16.64', '10.111.16.76'],'in.com':['10.111.17.55', '10.111.17.64', '10.111.17.76']}
 IP=[]
 logs()
 for x, y in domain.items():

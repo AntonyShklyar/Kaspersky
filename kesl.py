@@ -62,9 +62,13 @@ for var, g in enumerate(IP, 1):
 		a = pipe.read()
 		a=a.replace("\n","")
 		n=str("'{}'".format(g))
-		if a==n:
+		if a==n and var==1:
                         exit()
-		else:
+		elif var==1:
+			if subprocess.call(["/opt/kaspersky/klnagent64/bin/klmover", "-address", g]) == 0: os.system('echo $(date +"%Y%m%d-%H%M%S") KSC Server change operation on'+g+' Successful >> /var/log/kasper.log'); exit()
+			else:
+				os.system('echo $(date +"%Y%m%d-%H%M%S") KSC Server change operation on'+g+' Unsuccessful >> /var/log/kasper.log'); exit()
+		elif a!=n and var!=1:
 			if subprocess.call(["/opt/kaspersky/klnagent64/bin/klmover", "-address", g]) == 0: os.system('echo $(date +"%Y%m%d-%H%M%S") KSC Server change operation on'+g+' Successful >> /var/log/kasper.log'); exit()
 			else:
 				os.system('echo $(date +"%Y%m%d-%H%M%S") KSC Server change operation on'+g+' Unsuccessful >> /var/log/kasper.log'); exit()

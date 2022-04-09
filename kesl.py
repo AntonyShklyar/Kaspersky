@@ -20,13 +20,13 @@ def networkavailable(var, g):
         mount = subprocess.Popen(("ping", "-c4", g), stdout=subprocess.PIPE); exit_code = subprocess.check_output(("sed", "-n", '1,/^---/d;s/%.*//;s/.*, //g;p;q'), stdin=mount.stdout); mount.wait()
         if int(exit_code.replace("\n","")) == 100:
                 if var==1:
-                        os.system('echo $(date +"%Y%m%d-%H%M%S")     Server KSC is not available       >> /var/log/backupdb.log')
+                        os.system('echo $(date +"%Y%m%d-%H%M%S")     Server KSC is not available       >> /var/log/kasper.log')
                         return 1
                 else:
-                        os.system('echo $(date +"%Y%m%d-%H%M%S")     Server KSC is not available       >> /var/log/backupdb.log')
+                        os.system('echo $(date +"%Y%m%d-%H%M%S")     Server KSC is not available       >> /var/log/kasper.log')
                         return 1
         else:
-                os.system('echo $(date +"%Y%m%d-%H%M%S")   Server KSC is available      >> /var/log/backupdb.log')
+                os.system('echo $(date +"%Y%m%d-%H%M%S")   Server KSC is available      >> /var/log/kasper.log')
                 return 0
 	'''
 	Return data type - number.

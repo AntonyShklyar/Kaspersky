@@ -5,13 +5,13 @@ Structurally, the system consists of the following segments: 3 network segments:
 •	external (in.com)
 •	internal (vp.com)
 •	isolated (ac.com)
-Segments can be added in the "segment" dictionary of the «acroniswitch.py» file.
+Segments can be added in the "segment" dictionary of the «kesl.py» file.
 The fault tolerance of the segments is ensured by the presence of a main data center (OCOD) and reserve data centers - RCOD and GCOD. RCOD and GCOD accepts connections in the event of a failure of the hardware and/or software of the main data center.
 3 data centers:
 •	OCOD (01)
 •	RCOD (02)
 •	GCOD (03)
-Data center numeric identifiers and KSC server IP-adresses can be added to the "codid" dictionary of the «acroniswitch.py» file.
+Data center numeric identifiers and KSC server IP-adresses can be added to the "codid" dictionary of the «kesl.py» file.
 All segments operate within the same data center. The interaction of technical means between segments is excluded.
 The interaction of technical means between data centers within the same segment is allowed.
 The belonging of a server to a segment/data center can be determined by the domain name/number that is in the FQDN name of each server (should be written in /etc/hostname). For example, the server bd1iz01.ac.com belongs to an isolated segment of the main data center.

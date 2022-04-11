@@ -1,0 +1,18 @@
+The algorithm of the kesl.py script:
+1. check for the presence of the kasper.log log file. If not, create a file. File size check. If the size equal to 1 GB is reached, the file is cleared;
+2. formation of a list of IP addresses of KSC servers depending on the segment and number of the data center where the server with the KSC agent is located.
+3. definition of the "main" KSC server (the KSC server that is located in the same segment and data center as the server with the KSC agent). Move the IP address of this server to the top of the list.
+4. checking network availability via ICMP protocol of KSC servers;
+5. Determine the IP address of the KSC server to which the KSC agent is currently connected.
+6. switching the KSC agent to another KSC server in the cases described below. Formation of the corresponding event.
+7. In other cases described below, the KSC agent is not switched. Formation of the corresponding event.
+
+Cases in which a KSC agent switches to another KSC server:
+1. if the "main" server is not available and the KSC agent is connected to it
+2. if the "main" server is unavailable and the KSC agent is not connected to it, but the KSC agent is connected to another KSC server that is also unavailable
+3. if the "main" server is available, but the KSC agent is connected to another server
+
+Cases in which a KSC agent does not switch to another KSC server:
+1. if the "main" server is available and the KSC agent is connected to it
+2. if the "main" server is unavailable, but the KSC agent is already connected to another available KSC server
+3. an error occurred when switching the KSC agent.

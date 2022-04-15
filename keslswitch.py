@@ -23,7 +23,8 @@ def logs():
         #The function returns 0
 def networkavailable(var, g):
         '''Determining the network availability of KSC server'''
-        mount = subprocess.Popen(("ping", "-c4", g), stdout=subprocess.PIPE); exit_code = subprocess.check_output(("sed", "-n", '1,/^---/d;s/%.*//;s/.*, //g;p;q'), stdin=mount.stdout).decode("utf-8")
+        mount = subprocess.Popen(("ping", "-c4", g), stdout=subprocess.PIPE)
+        exit_code = subprocess.check_output(("sed", "-n", '1,/^---/d;s/%.*//;s/.*, //g;p;q'), stdin=mount.stdout).decode("utf-8")
         if int(exit_code.replace("\n","")) == 100:
             if var == 1:
                 os.system('echo $(date +"%Y%m%d-%H%M%S")     Server KSC is not available       >> /var/log/kasper.log')
@@ -48,8 +49,8 @@ Data - domain: list of IP addresses KSC server and segments name
 The data type is a dictionary.
 Data - Data Center ID: IP KSC server
 '''
-segment = {'ac.com':['10.111.15.55', '10.111.15.64', '10.111.15.76'],'vp.com':['10.111.16.55', '10.111.16.64', '10.111.16.76'],'in.com':['10.111.17.55', '10.111.17.64', '10.111.17.76']}
-codid = {'01':['10.111.15.55', '10.111.16.55', '10.111.17.55'],'02':['10.111.15.64', '10.111.16.64', '10.111.17.64'],'03':['10.111.15.76', '10.111.16.76', '10.111.17.76']}
+segment = {'ac.com': ['10.111.15.55', '10.111.15.64', '10.111.15.76'], 'vp.com': ['10.111.16.55', '10.111.16.64', '10.111.16.76'], 'in.com': ['10.111.17.55', '10.111.17.64', '10.111.17.76']}
+codid = {'01': ['10.111.15.55', '10.111.16.55', '10.111.17.55'], '02': ['10.111.15.64', '10.111.16.64', '10.111.17.64'], '03': ['10.111.15.76', '10.111.16.76', '10.111.17.76']}
 KSC = []
 logs()
 a = socket.gethostname()

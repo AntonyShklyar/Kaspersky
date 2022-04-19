@@ -20,7 +20,10 @@ def logs():
             f.close()
         if not os.path.getsize('/var/log/kasper.log')/(1024*1024*1024) == 0: 
             os.system(r' >/var/log/kasper.log')
-        #The function returns 0
+	'''
+        Output data:
+        the function returns 0
+        '''
 def networkavailable(var, g):
         '''Determining the network availability of KSC server'''
         mount = subprocess.Popen(("ping", "-c4", g), stdout=subprocess.PIPE)
@@ -36,6 +39,10 @@ def networkavailable(var, g):
                 os.system('echo $(date +"%Y%m%d-%H%M%S")   Server KSC is available      >> /var/log/kasper.log')
                 return 0
         '''
+	Input data:
+	var - data type is a number - Counter
+	g - data type is a string - IP-address of KSC-server
+	Output data:
 	Return data type - number.
 	If the function returns 0 - KSC server is available
 	If the function returns 1 - KSC server isn't available
@@ -44,15 +51,17 @@ def networkavailable(var, g):
 Editable parameters:
 --segment
 The data type is a dictionary.
-Data - domain: list of IP addresses KSC server and segments name
+Data - domain: list of IP-addresses KSC server and segments name
 --codid
 The data type is a dictionary.
 Data - Data Center ID: IP KSC server
 '''
 segment = {'ac.com': ['10.111.15.55', '10.111.15.64', '10.111.15.76'], 'vp.com': ['10.111.16.55', '10.111.16.64', '10.111.16.76'], 'in.com': ['10.111.17.55', '10.111.17.64', '10.111.17.76']}
 codid = {'01': ['10.111.15.55', '10.111.16.55', '10.111.17.55'], '02': ['10.111.15.64', '10.111.16.64', '10.111.17.64'], '03': ['10.111.15.76', '10.111.16.76', '10.111.17.76']}
+#Determining the massive, which will be filled IP-addresses KSC server
 KSC = []
 logs()
+#Determining the server name
 a = socket.gethostname()
 for x, y in segment.items():
     if x in a:
